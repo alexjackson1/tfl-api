@@ -4,12 +4,12 @@ FROM rust:1.91.1-slim AS builder
 # Create app directory
 WORKDIR /app
 
-# Cache dependencies
-COPY Cargo.toml Cargo.lock ./
-RUN mkdir src && echo "fn main() {}" > src/main.rs
-RUN cargo build --release || true
+# Install build dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends build-essential pkg-config libssl-dev && \
+    rm -rf /var/lib/apt/lists/*
 
-# Now copy the real source and build
+COPY Cargo.toml Cargo.lock ./
 COPY src ./src
 RUN cargo build --release
 
