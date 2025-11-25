@@ -1,16 +1,12 @@
 services:
   api:
     build: .
-    container_name: tfl-api
     ports:
       - "30812:8000"
-    restart: no
+    restart: unless-stopped
     environment:
-      - ROCKET_PROFILE=debug
-      - ROCKET_LOG_LEVEL=debug
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8000
-      - RUST_BACKTRACE=1
       - TFL_APP_ID=${TFL_APP_ID}
       - TFL_APP_KEY=${TFL_APP_KEY}
       - TFL_STOP_ID=${TFL_STOP_ID}

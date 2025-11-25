@@ -283,7 +283,7 @@ fn rocket() -> _ {
     let config = load_config();
 
     let client = Client::builder()
-        .user_agent("lx-tfl-api/0.1")
+        .user_agent("lx-nextbus/0.2")
         .build()
         .expect("Failed to build HTTP client");
 

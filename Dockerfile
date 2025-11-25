@@ -27,7 +27,7 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/*
 
 # Copy compiled binary from builder stage
-COPY --from=builder /app/target/release/tfl-api /usr/local/bin/tfl-api
+COPY --from=builder /app/target/release/nextbus /usr/local/bin/nextbus
 
 # Rocket config: bind on all interfaces inside container
 ENV ROCKET_ADDRESS=0.0.0.0
@@ -41,4 +41,4 @@ EXPOSE 8000
 
 USER appuser
 
-CMD ["tfl-api"]
+CMD ["nextbus"]
